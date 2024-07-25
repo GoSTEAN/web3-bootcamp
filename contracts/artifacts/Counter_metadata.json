@@ -1,0 +1,121 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "decrement",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCount",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "increment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_count",
+						"type": "uint8"
+					}
+				],
+				"name": "setCount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "This is a basic example of a counter with increment and decrement functionality.",
+			"kind": "dev",
+			"methods": {
+				"decrement()": {
+					"details": "This function decreases the count state variable by 1."
+				},
+				"getCount()": {
+					"details": "The function is marked as view, meaning it does not modify the state.",
+					"returns": {
+						"_0": "The current count as an unsigned 8-bit integer"
+					}
+				},
+				"increment()": {
+					"details": "This function increases the count state variable by 1."
+				},
+				"setCount(uint8)": {
+					"details": "The input parameter _count allows setting the count directly.",
+					"params": {
+						"_count": "The new value for the count"
+					}
+				}
+			},
+			"title": "A simple counter contract",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"decrement()": {
+					"notice": "Decrements the count by 1"
+				},
+				"getCount()": {
+					"notice": "Returns the current count value"
+				},
+				"increment()": {
+					"notice": "Increments the count by 1"
+				},
+				"setCount(uint8)": {
+					"notice": "Sets the count to a specific value"
+				}
+			},
+			"notice": "This contract allows incrementing, decrementing, and setting a counter value.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Counter.sol": "Counter"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Counter.sol": {
+			"keccak256": "0x21916d33ecab7cab00dbbb9d064d384d974a5a1c4904fd4698183f6199f49063",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e2fd57086ee6405118281942c982f72e95ab2cdce53ac42afdf1650f42363461",
+				"dweb:/ipfs/QmWZaaxj7KEkCHmxYC1n2LyACUWF46Pfmtmrud9fb91nHu"
+			]
+		}
+	},
+	"version": 1
+}

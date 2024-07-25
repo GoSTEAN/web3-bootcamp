@@ -1,0 +1,170 @@
+{
+	"compiler": {
+		"version": "0.8.24+commit.e11b9ed9"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_yourCarName",
+						"type": "string"
+					}
+				],
+				"name": "buyCar",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "companyName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCarLeft",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCompanyName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getYourCarName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Tracks the total cars available, cars sold, and details of the last car purchased.",
+			"kind": "dev",
+			"methods": {
+				"buyCar(string)": {
+					"details": "Updates the number of cars left, number of cars sold, and the name of the last car purchased.",
+					"params": {
+						"_yourCarName": "The name of the car purchased by the customer"
+					}
+				},
+				"getCarLeft()": {
+					"returns": {
+						"_0": "The number of cars left as an unsigned 16-bit integer"
+					}
+				},
+				"getCompanyName()": {
+					"returns": {
+						"_0": "The name of the company as a string"
+					}
+				},
+				"getYourCarName()": {
+					"details": "This function is external and can be called by other contracts.",
+					"returns": {
+						"_0": "The name of the last car purchased as a string"
+					}
+				}
+			},
+			"stateVariables": {
+				"carLeft": {
+					"details": "Updated each time a car is bought."
+				},
+				"companyName": {
+					"details": "This is a public state variable, accessible by anyone."
+				},
+				"numCarSold": {
+					"details": "This internal state variable tracks the number of cars sold by the company."
+				},
+				"totalCars": {
+					"details": "This is a private state variable that stores the total count of cars."
+				},
+				"yourCarName": {
+					"details": "This internal state variable is updated with each car purchase."
+				}
+			},
+			"title": "CarCompany Contract",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"buyCar(string)": {
+					"notice": "Allows a customer to buy a car"
+				},
+				"companyName()": {
+					"notice": "The name of the car company"
+				},
+				"getCarLeft()": {
+					"notice": "Retrieves the number of cars left"
+				},
+				"getCompanyName()": {
+					"notice": "Retrieves the name of the car company"
+				},
+				"getYourCarName()": {
+					"notice": "Retrieves the name of the last car purchased"
+				}
+			},
+			"notice": "This contract manages the sale of cars for a car company named \"Goshen\".",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/CarCompany.sol": "CarCompany"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/CarCompany.sol": {
+			"keccak256": "0x82d70828c735837118d65c1df8d8ad2d2d16ac27af04e6784019a148ac2d44ce",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://46958a266397e48628e3f1ec52d6b3305fbef204aafcdd33f39a0226a397ec0e",
+				"dweb:/ipfs/QmS62Dg4cNV8XprJB3NP7XGGF2PmcoYVguxftauUaVziQA"
+			]
+		}
+	},
+	"version": 1
+}
