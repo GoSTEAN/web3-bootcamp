@@ -1,15 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.24;
 
 contract StudentRegistry {
-    // struct
+    // custom error
+    error NameIsEmpty();
+    error UnderAge(uint8 age, uint8 expectedAge);
+
+    //custom data type
     struct Student {
         address studentAddr;
-        uint256 studentId;
         string name;
-        // age should not be less than 18
-        // add function to update student 
-        // add delete function to delete student from the registry
+        uint256 studentId;
         uint8 age;
     }
 
@@ -19,13 +20,40 @@ contract StudentRegistry {
         owner = msg.sender;
     }
 
+    //dynamic array of students
     Student[] private students;
 
-    // why is memory attached to _name? because string are converted to arrays so it need memory to store it
-    function addStudent(address _studentAddr, string memory _name, uint8 _age) public  {
+    mapping(address => Student) public studentsMapping;
 
-        require(owner == msg.sender, "You are not authorized");
-        require(_age >= 18, "You are not up to age");
+    modifier onlyOwner () {
+        require( owner == msg.sender, "You fraud!!!");
+        _;
+    }
+
+    modifier isNotAddressZero () {
+        require(msg.sender != address(0), "Invalid Address");
+        _;
+    }
+
+    function addStudent(
+        address _studentAddr,
+        string memory _name,
+        uint8 _age
+    ) public onlyOwner isNotAddressZero {
+
+        if (bytes(_name).length == 0 ) {
+            revert NameIsEmpty();
+        }
+
+        if (_age < 18 ) {
+            revert UnderAge({
+                age: _age,
+                expectedAge: 18
+            });
+        }
+        require( bytes(_name).length > 0, "Name cannot be blank");
+        require( _age >= 18, "This student is under age");
+
         uint256 _studentId = students.length + 1;
         Student memory student = Student({
             studentAddr: _studentAddr,
@@ -35,32 +63,41 @@ contract StudentRegistry {
         });
 
         students.push(student);
+        // add student to studentsMapping
+        studentsMapping[_studentAddr] = student;
     }
 
-    function getStudent(uint256 _studentId) public view returns (Student memory) {
-        return  students[_studentId - 1];
+    function getStudent(uint8 _studentId) public isNotAddressZero view returns (Student memory) {
+        return students[_studentId - 1];
     }
 
-    function updateStudent(address _studentAddr, string memory _name, uint8 _age, uint256 _studentId) public {
-        require(owner == msg.sender, "You are not authorized");
-        require(_studentId > 0 && _studentId <= students.length, "This is an invalid student");
-        require(_age >= 18, "You are not up to age");
 
-        Student storage student = students[_studentId - 1];
-        student.studentAddr = _studentAddr;
-        student.name = _name;
-        student.age = _age;
+
+    function getStudentFromMapping(address _studentAddr)
+        public
+        isNotAddressZero
+        view
+        returns (Student memory)
+    {
+        return studentsMapping[_studentAddr];
     }
 
-    function deleteStudent(uint256 _studentId) public {
-        require(owner == msg.sender, "You are not authorized");
-        require(_studentId > 0 && _studentId <= students.length, "This is an invalid student");
 
-        uint256 index = _studentId - 1;
-        if (index != students.length - 1) {
-            students[index] = students[students.length - 1];
-        }
 
-        students.pop();
+    function deleteStudent(address _studentAddr) public onlyOwner  isNotAddressZero{
+
+        require(studentsMapping[_studentAddr].studentAddr != address(0), "Student does not exist");
+
+        // delete studentsMapping[_studentAddr];
+
+        Student memory student = Student({
+            studentAddr: address(0),
+            name: "",
+            age: 0,
+            studentId: 0
+        });
+
+        studentsMapping[_studentAddr] = student;
+
     }
 }
